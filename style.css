@@ -1,0 +1,66 @@
+/*
+Theme Name: Betheme Child
+Theme URI: https://themes.muffingroup.com/betheme
+Author: Muffin group
+Author URI: https://muffingroup.com
+Description: Child Theme for Betheme
+Template: betheme
+Version: 2.0.2
+*/
+.mfn-tag-cloud {
+  margin-top: 20px;
+}
+
+.mfn-tag-cloud li {
+  background-color: #fff;
+  padding: 7px 15px;
+  margin: 0 10px;
+  border-radius: 12px;
+}
+.mfn-tag-cloud li a {
+  color: #000 !important;
+  background-color: transparent !important;
+}
+
+.nieruchomosci_container {
+  margin-bottom: 48px;
+}
+.nieruchomosci_container .mfn-queryloop-item-wrapper {
+  padding-bottom: 24px;
+}
+.nieruchomosci_container .mcb-column-inner {
+  padding: 0 !important;
+  margin: 0;
+}
+.nieruchomosci_container .mfn-queryloop-item-wrapper {
+  background-color: rgba(92, 92, 92, 0.2);
+  border-radius: 24px 24px 0 0;
+  overflow: hidden;
+}
+.nieruchomosci_container .button {
+  width: 90%;
+}
+
+.nieruchomosci_container .estate_option-container {
+  margin: 24px 24px 0 24px;
+  color: #fff;
+  font-size: 12px;
+}
+.nieruchomosci_container .estate_option-container .mcb-column-inner {
+  margin: 0;
+  padding: 0;
+}
+.nieruchomosci_container .estate_option-container i {
+  margin-right: 12px;
+}
+.nieruchomosci_container .estate_location {
+  margin: 0 24px;
+  color: #fff;
+}
+.nieruchomosci_container .estate_location .mcb-column-inner {
+  margin: 0;
+  padding: 0;
+}
+.nieruchomosci_container .estate_location i {
+  margin-right: 12px;
+}/*# sourceMappingURL=style.css.map */

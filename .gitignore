@@ -1,0 +1,31 @@
+# WordPress Core & Config (if applicable in root)
+wp-config.php
+wp-content/uploads/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/backup-db/
+*.log
+error_log
+debug.log
+
+# Dependency Directories
+node_modules/
+vendor/
+
+# SASS/CSS
+.sass-cache/
+*.css.map
+
+# IDE & OS Files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
