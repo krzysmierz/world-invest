@@ -11,9 +11,10 @@
  * Load Textdomain
  */
 
-function mfn_load_child_theme_textdomain(){
-	load_child_theme_textdomain('mfn-opts', get_stylesheet_directory() . '/languages');
-	load_child_theme_textdomain('betheme', get_stylesheet_directory() . '/languages');
+function mfn_load_child_theme_textdomain()
+{
+    load_child_theme_textdomain('mfn-opts', get_stylesheet_directory() . '/languages');
+    load_child_theme_textdomain('betheme', get_stylesheet_directory() . '/languages');
 }
 add_action('after_setup_theme', 'mfn_load_child_theme_textdomain');
 
@@ -23,35 +24,36 @@ add_action('after_setup_theme', 'mfn_load_child_theme_textdomain');
 
 function mfnch_enqueue_styles()
 {
-	// enqueue the parent stylesheet
-	// however we do not need this if it is empty
-	// wp_enqueue_style('parent-style', get_template_directory_uri() .'/style.css');
+    // enqueue the parent stylesheet
+    // however we do not need this if it is empty
+    // wp_enqueue_style('parent-style', get_template_directory_uri() .'/style.css');
 
-	// enqueue the parent RTL stylesheet
+    // enqueue the parent RTL stylesheet
 
-	if ( is_rtl() ) {
-		wp_enqueue_style('mfn-rtl', get_template_directory_uri() . '/rtl.css');
-	}
+    if (is_rtl()) {
+        wp_enqueue_style('mfn-rtl', get_template_directory_uri() . '/rtl.css');
+    }
 
-	// enqueue the child stylesheet
+    // enqueue the child stylesheet
 
-	wp_dequeue_style('style');
-	wp_enqueue_style('style', get_stylesheet_directory_uri() .'/style.css');
+    wp_dequeue_style('style');
+    wp_enqueue_style('style', get_stylesheet_directory_uri() . '/style.css');
 }
 add_action('wp_enqueue_scripts', 'mfnch_enqueue_styles', 101);
 
 /**
  * Enqueue Leaflet scripts and styles for OpenStreetMap
  */
-function enqueue_leaflet_scripts() {
-	// Enqueue Leaflet CSS
-	wp_enqueue_style('leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), '1.9.4');
+function enqueue_leaflet_scripts()
+{
+    // Enqueue Leaflet CSS
+    wp_enqueue_style('leaflet-css', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css', array(), '1.9.4');
 
-	// Enqueue Leaflet JS
-	wp_enqueue_script('leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), '1.9.4', true);
+    // Enqueue Leaflet JS
+    wp_enqueue_script('leaflet-js', 'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js', array(), '1.9.4', true);
 
-	// Enqueue custom map initialization script
-	wp_enqueue_script('acf-map-init', get_stylesheet_directory_uri() . '/js/acf-map.js', array('leaflet-js'), '1.0', true);
+    // Enqueue custom map initialization script
+    wp_enqueue_script('acf-map-init', get_stylesheet_directory_uri() . '/js/acf-map.js', array('leaflet-js'), '1.0', true);
 }
 add_action('wp_enqueue_scripts', 'enqueue_leaflet_scripts');
 
@@ -59,7 +61,8 @@ add_action('wp_enqueue_scripts', 'enqueue_leaflet_scripts');
  * Shortcode do wyświetlania galerii ACF zgodnie ze strukturą BeTheme
  * Użycie: [acf_galeria] lub [acf_galeria columns="3"]
  */
-function acf_galeria_shortcode($atts) {
+function acf_galeria_shortcode($atts)
+{
     // Parametry shortcode
     $atts = shortcode_atts(array(
         'columns' => '3',
@@ -166,7 +169,8 @@ add_shortcode('acf_galeria', 'acf_galeria_shortcode');
  * - lokalizacja_zoom - poziom przybliżenia (opcjonalne, domyślnie 15)
  * - lokalizacja_opis - opis lokalizacji (opcjonalne)
  */
-function acf_mapa_shortcode($atts) {
+function acf_mapa_shortcode($atts)
+{
     // Parametry shortcode
     $atts = shortcode_atts(array(
         'height' => '450px',
@@ -236,3 +240,43 @@ function acf_mapa_shortcode($atts) {
     return $output;
 }
 add_shortcode('acf_mapa', 'acf_mapa_shortcode');
+
+// generowanie slidera swiper.js dla slidera lokalizacji 
+function my_slider_assets_clean()
+{
+
+    // Swiper CSS
+    wp_enqueue_style(
+        'swiper-css',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
+        array(),
+        null
+    );
+
+    // Własny CSS slidera (stwórz plik w swoim motywie: /assets/css/slider.css)
+    wp_enqueue_style(
+        'my-slider-css',
+        get_stylesheet_directory_uri() . '/assets/css/slider.css',
+        array(),
+        null
+    );
+
+    // Swiper JS
+    wp_enqueue_script(
+        'swiper-js',
+        'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js',
+        array(),
+        null,
+        true
+    );
+
+    // Własny JS inicjalizujący slider (plik: /assets/js/slider-init.js)
+    wp_enqueue_script(
+        'my-slider-init',
+        get_stylesheet_directory_uri() . '/js/slider-init.js',
+        array('swiper-js'),
+        null,
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'my_slider_assets_clean');

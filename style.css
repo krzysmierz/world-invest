@@ -63,4 +63,12 @@ Version: 2.0.2
 }
 .nieruchomosci_container .estate_location i {
   margin-right: 12px;
+}
+
+.mySwiper {
+  overflow: hidden;
+}
+
+.swiper-slide {
+  width: 25%;
 }/*# sourceMappingURL=style.css.map */
